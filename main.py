@@ -1,6 +1,7 @@
 ### INF601 - Advanced Programming in Python
 ### Samuel Ayers
 ### Mini Project 2
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
@@ -48,11 +49,11 @@ def createPlotOne():
 
 
 """         FUNCTION: PLOT TWO, NEEDS POLISH"""
-#creates a function showing year and rating
+#creates a plot showing how many books published in each month of 1998
 def createPlotTwo():
     plt.figure()
     title = "Books Published in 1998"
-
+    plt.title(title)
     booksFrom1998 = []
 
     for date in booksPandasFrame["publication_date"]:
@@ -104,8 +105,6 @@ def createPlotTwo():
     saveChartToFile(title)
 
 
-
-
 """         FUNCTION: PLOT THREE, NEEDS POLISH"""
 #creates a plot of top five authors with most books on list
 def createPlotThree():
@@ -138,8 +137,6 @@ def createPlotThree():
 
     topFiveAuthors = sortedAuthors[:5]
     authors, counts = zip(*topFiveAuthors)
-
-    #plt.xticks(rotation=25)
     plt.title(title)
     plt.xlabel("Authors")
     plt.ylabel("Number of Books")
