@@ -17,24 +17,32 @@ except FileExistsError:
 #create pandas dataframe called tvShows from csv data
 booksPandasFrame = pd.read_csv("books.csv", on_bad_lines='skip')
 
-print(booksPandasFrame.describe())
-"""PLOT ONE, SHITTY"""
 
-#tvShows.head(25)["Rating"].plot()
-#savefile = "charts/Top 25 Rating.png"
+"""PLOT ONE, Average, Low, Min book rating, FINISHED"""
+
+averageBookRating = (booksPandasFrame["average_rating"].mean())
+highestBookRating = (booksPandasFrame["average_rating"].max())
+lowestBookRating = (booksPandasFrame["average_rating"].min())
+
+labels = ['Average', 'Highest', 'Lowest']
+values = [averageBookRating, highestBookRating, lowestBookRating]
+
+plt.bar(labels, values)
+
+plt.title("Book Rating Statistics")
+plt.ylabel('Rating')
+#savefile = "charts/book statistics.png"
 #plt.savefig(savefile)
 
-#plt.show()
-
 """PLOT TWO, UNSTARTED"""
-#plt.scatter(tvShows["Episodes"], tvShows["Rating"])
-#plt.show()
+plt.scatter(booksPandasFrame["publication_date"], booksPandasFrame["average_rating"])
+plt.show()
 
 """PLOT THREE, UNSTARTED"""
 #tvShows.head(25)["Rating"].plot.density()
 #plt.show()
 
-"""PLOT FOUR, FINISHED"""
+"""PLOT FOUR, UNSTARTED"""
 #pulls top five tv shows from pandaframe
 #topFiveTvShows = tvShows.head(5)
 #finds min and max rating and creates buffer
