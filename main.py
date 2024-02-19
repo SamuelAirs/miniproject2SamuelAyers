@@ -34,10 +34,10 @@ def createPlotOne():
 
     averageBookRating = (booksPandasFrame["average_rating"].mean())
     highestBookRating = (booksPandasFrame["average_rating"].max())
-    lowestBookRating = (booksPandasFrame["average_rating"].min())
+    sdBookRating = (booksPandasFrame["average_rating"].std())
 
-    labels = ['Average', 'Highest', 'Lowest']
-    values = [averageBookRating, highestBookRating, lowestBookRating]
+    labels = ['Average', 'Highest', 'Standard Deviation']
+    values = [averageBookRating, highestBookRating, sdBookRating]
 
 
     plt.title(title)
@@ -51,7 +51,7 @@ def createPlotOne():
 """         FUNCTION: PLOT TWO, NEEDS POLISH"""
 #creates a plot showing how many books published in each month of 1998
 def createPlotTwo():
-    plt.figure()
+    plt.figure(figsize=(16,10))
     title = "Books Published in 1998"
     plt.title(title)
     booksFrom1998 = []
