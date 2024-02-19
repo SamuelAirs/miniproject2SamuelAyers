@@ -56,3 +56,5 @@ plt.ylim(minRating, maxRating)
 #plt.savefig(savefile)
 
 """PLOT FIVE, UNSTARTED"""
+tvShows.plot(tvShows["Episodes"], tvShows["Rating"])
+plt.show()
