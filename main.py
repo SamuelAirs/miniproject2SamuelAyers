@@ -30,7 +30,7 @@ tvShows.head(25)["Rating"].plot()
 #plt.show()
 
 """PLOT THREE, UNSTARTED"""
-tvShows.plot.density(tvShows["Rating"])
+tvShows.head(25)["Rating"].plot.density()
 plt.show()
 
 """PLOT FOUR, FINISHED"""
