@@ -24,9 +24,11 @@ tvShows.head(25)["Rating"].plot()
 plt.show()
 
 #PLOT TWO, UNSTARTED
-
+plt.scatter(tvShows["Episodes"], tvShows["Rating"])
+plt.show()
 #PLOT THREE, UNSTARTED
-
+tvShows.plot.density()
+plt.show()
 #PLOT FOUR, UNSTARTED
 
 #PLOT FIVE, UNSTARTED
