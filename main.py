@@ -20,6 +20,8 @@ booksPandasFrame = pd.read_csv("books.csv", on_bad_lines='skip', parse_dates=['p
 
 """PLOT ONE, Average, Low, Min book rating, NEEDS POLISH"""
 
+plt.figure()
+
 averageBookRating = (booksPandasFrame["average_rating"].mean())
 highestBookRating = (booksPandasFrame["average_rating"].max())
 lowestBookRating = (booksPandasFrame["average_rating"].min())
@@ -36,9 +38,10 @@ plt.bar(labels, values)
 
 savefile = "charts/Book Rating Statistics.png"
 plt.savefig(savefile)
-
-
+plt.show()
+plt.close()
 """PLOT TWO, FINISHED"""
+plt.figure()
 
 firstPubDate = booksPandasFrame["publication_date"].min()
 lastPubDate = booksPandasFrame["publication_date"].max()
@@ -50,9 +53,11 @@ plt.scatter(booksPandasFrame["publication_date"], booksPandasFrame["average_rati
 
 savefile = "charts/Dates and Ratings.png"
 plt.savefig(savefile)
-
-
+plt.show()
+plt.close()
 """PLOT THREE, pulls publication date and rating to show a scatter plot, NEEDS POLISH"""
+
+plt.figure(figsize=(16, 10))
 #pulls all authors from panda frames, some entries contain multiple authors though
 authorListWithMultipleAuthors = booksPandasFrame["authors"].tolist()
 
@@ -82,7 +87,6 @@ topFiveAuthors = sortedAuthors[:5]
 authors, counts = zip(*topFiveAuthors)
 
 plt.xticks(rotation=45)
-plt.figure(figsize=(16, 10))
 plt.title("Top 5 Most Prolific Authors")
 plt.xlabel("Authors")
 plt.ylabel("Number of Books")
@@ -92,9 +96,16 @@ plt.bar(authors, counts)
 
 savefile = "charts/Most Prolific.png"
 plt.savefig(savefile)
+plt.show()
+plt.close()
 
+"""PLOT FOUR, IN PROGRESS"""
+plt.figure()
+#pulls 20 random books. Calculates book length versus score
+plt.title("Page Count vs. Rating - 10 Random Titles")
+plt.xlabel("Page Count")
+plt.ylabel("Rating")
 
-"""PLOT FOUR, UNSTARTED"""
-
-
+plt.show()
+plt.close()
 """PLOT FIVE, UNSTARTED"""
