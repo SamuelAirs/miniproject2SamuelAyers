@@ -56,7 +56,7 @@ def createPlotTwo():
 
 
     plt.xticks([], [])
-    plt.xlabel("Dates from " + firstPubDate + " to " + lastPubDate)
+    plt.xlabel("<---------------" + firstPubDate + "                to             " + lastPubDate + "--------------->")
     plt.scatter(booksPandasFrame["publication_date"], booksPandasFrame["average_rating"])
 
     saveChartToFile(title)
@@ -94,7 +94,7 @@ def createPlotThree():
     topFiveAuthors = sortedAuthors[:5]
     authors, counts = zip(*topFiveAuthors)
 
-    plt.xticks(rotation=45)
+    #plt.xticks(rotation=25)
     plt.title(title)
     plt.xlabel("Authors")
     plt.ylabel("Number of Books")
@@ -134,6 +134,8 @@ def createPlotFive():
     plt.title(title)
     plt.xlabel("Page Count")
     plt.ylabel("Rating")
+    plt.xlim(50, 1600)
+    plt.ylim(2.5, 5)
 
     plt.scatter(booksPandasFrame['  num_pages'], booksPandasFrame['average_rating'])
 
