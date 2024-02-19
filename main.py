@@ -6,6 +6,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+import random
 
 
 #create charts folder
@@ -100,12 +101,33 @@ plt.show()
 plt.close()
 
 """PLOT FOUR, IN PROGRESS"""
+#pulls 10 random books. Calculates book length versus score
 plt.figure()
-#pulls 20 random books. Calculates book length versus score
-plt.title("Page Count vs. Rating - 10 Random Titles")
+plt.title("Average Rating - 10 Random Titles")
+plt.xlabel("Title")
+plt.ylabel("Rating")
+
+
+sampleBooks = booksPandasFrame.sample(5)
+plt.xticks(rotation=45)
+
+plt.scatter(sampleBooks['title'], sampleBooks['average_rating'])
+
+savefile = "Random Books.png"
+plt.savefig(savefile)
+plt.show()
+plt.close()
+
+"""PLOT FIVE, NEEDS POLISH"""
+#this graph shows the page count vs rating distribution for all books in the list
+plt.figure()
+plt.title("Page Count vs. Rating")
 plt.xlabel("Page Count")
 plt.ylabel("Rating")
 
+plt.scatter(booksPandasFrame['  num_pages'], booksPandasFrame['average_rating'])
+
+savefile = "charts/Page vs Rating.png"
+plt.savefig(savefile)
 plt.show()
 plt.close()
-"""PLOT FIVE, UNSTARTED"""
