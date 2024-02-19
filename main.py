@@ -15,7 +15,7 @@ except FileExistsError:
     pass
 
 #create pandas dataframe called tvShows from csv data
-booksPandasFrame = pd.read_csv("books.csv", on_bad_lines='skip')
+booksPandasFrame = pd.read_csv("books.csv", on_bad_lines='skip', parse_dates=['publication_date'])
 
 
 """PLOT ONE, Average, Low, Min book rating, FINISHED"""
@@ -31,12 +31,20 @@ plt.bar(labels, values)
 
 plt.title("Book Rating Statistics")
 plt.ylabel('Rating')
-#savefile = "charts/book statistics.png"
-#plt.savefig(savefile)
+savefile = "charts/book statistics.png"
+plt.savefig(savefile)
 
 """PLOT TWO, UNSTARTED"""
+
+firstPubDate = booksPandasFrame["publication_date"].min()
+lastPubDate = booksPandasFrame["publication_date"].max()
+
+
+plt.xticks([], [])
 plt.scatter(booksPandasFrame["publication_date"], booksPandasFrame["average_rating"])
-plt.show()
+plt.xlabel("Dates from " + firstPubDate + " to " + lastPubDate)
+savefile = "charts/Dates and Ratings.png"
+plt.savefig(savefile)
 
 """PLOT THREE, UNSTARTED"""
 #tvShows.head(25)["Rating"].plot.density()
