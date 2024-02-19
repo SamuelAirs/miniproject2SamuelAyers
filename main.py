@@ -1,12 +1,11 @@
 ### INF601 - Advanced Programming in Python
 ### Samuel Ayers
 ### Mini Project 2
-
-#import pandas, and matplotlib
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
-import random
+
+
 
 """         FUNCTION: SAVES CHARTS TO FILE"""
 #function for saving and showing plots
@@ -16,6 +15,7 @@ def saveChartToFile(chartName):
     plt.show()
     plt.close()
 
+
 """         FUNCTION: CREATES CHARTS FOLDER"""
 def attemptToCreateChartFolder():
     #create charts folder
@@ -23,6 +23,7 @@ def attemptToCreateChartFolder():
         Path("charts").mkdir()
     except FileExistsError:
         pass
+
 
 """         FUNCTION: PLOT ONE, NEEDS POLISH"""
 #shows average rating, highest rating, lowest rating
@@ -45,21 +46,65 @@ def createPlotOne():
 
     saveChartToFile(title)
 
+
 """         FUNCTION: PLOT TWO, NEEDS POLISH"""
 #creates a function showing year and rating
 def createPlotTwo():
     plt.figure()
-    title = "Dates and Ratings"
+    title = "Books Published in 1998"
 
-    firstPubDate = booksPandasFrame["publication_date"].min()
-    lastPubDate = booksPandasFrame["publication_date"].max()
+    booksFrom1998 = []
 
+    for date in booksPandasFrame["publication_date"]:
+        if str(1998) in date:
+            booksFrom1998.append(date)
 
-    plt.xticks([], [])
-    plt.xlabel("<---------------" + firstPubDate + "                to             " + lastPubDate + "--------------->")
-    plt.scatter(booksPandasFrame["publication_date"], booksPandasFrame["average_rating"])
+    Months = {"January": 0,
+              "February": 0,
+              "March": 0,
+              "April": 0,
+              "May": 0,
+              "June": 0,
+              "July": 0,
+              "August": 0,
+              "September": 0,
+              "October": 0,
+              "November": 0,
+              "December": 0}
 
+    for i in range(len(booksFrom1998)):
+        monthDayYearList = booksFrom1998[i].split('/')
+        if monthDayYearList[0] == '1':
+            Months["January"] += 1
+        elif monthDayYearList[0] == '2':
+            Months["February"] += 1
+        elif monthDayYearList[0] == '3':
+            Months["March"] += 1
+        elif monthDayYearList[0] == '4':
+            Months["April"] += 1
+        elif monthDayYearList[0] == '5':
+            Months["May"] += 1
+        elif monthDayYearList[0] == '6':
+            Months["June"] += 1
+        elif monthDayYearList[0] == '7':
+            Months["July"] += 1
+        elif monthDayYearList[0] == '8':
+            Months["August"] += 1
+        elif monthDayYearList[0] == '9':
+            Months["September"] += 1
+        elif monthDayYearList[0] == '10':
+            Months["October"] += 1
+        elif monthDayYearList[0] == '11':
+            Months["November"] += 1
+        elif monthDayYearList[0] == '12':
+            Months["December"] += 1
+    listOfMonths = [Months.keys()]
+    listOfValues = [Months.values()]
+    plt.bar(listOfMonths, listOfValues)
     saveChartToFile(title)
+
+
+
 
 """         FUNCTION: PLOT THREE, NEEDS POLISH"""
 #creates a plot of top five authors with most books on list
@@ -104,7 +149,8 @@ def createPlotThree():
 
     saveChartToFile(title)
 
-"""         FUNCTION: PLOT FOUR, IN PROGRESS"""
+
+"""         FUNCTION: PLOT FOUR, NEEDS POLISH"""
 #plots the rating of a random book
 def createPlotFour():
     sampleBooks = booksPandasFrame.sample(1)
@@ -125,6 +171,7 @@ def createPlotFour():
 
     saveChartToFile('Random Book Rating and Year')
 
+
 """         FUNCTION: PLOT FIVE, NEEDS POLISH"""
 # this chart shows the page count vs rating distribution for all books in the list
 def createPlotFive():
@@ -140,6 +187,9 @@ def createPlotFive():
     plt.scatter(booksPandasFrame['  num_pages'], booksPandasFrame['average_rating'])
 
     saveChartToFile(title)
+
+
+
 
 """||||||||||||MAIN ||||||||||||"""
 #create pandas dataframe called tvShows from csv data
