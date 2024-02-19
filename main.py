@@ -98,8 +98,8 @@ def createPlotTwo():
             Months["November"] += 1
         elif monthDayYearList[0] == '12':
             Months["December"] += 1
-    listOfMonths = [Months.keys()]
-    listOfValues = [Months.values()]
+    listOfMonths = (Months.keys())
+    listOfValues = (Months.values())
     plt.bar(listOfMonths, listOfValues)
     saveChartToFile(title)
 
