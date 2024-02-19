@@ -8,6 +8,12 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import random
 
+#function for saving and showing plots
+def saveChartToFile(chartName):
+    savefile = "charts/" + chartName + ".png"
+    plt.savefig(savefile)
+    plt.show()
+    plt.close()
 
 #create charts folder
 try:
@@ -22,6 +28,7 @@ booksPandasFrame = pd.read_csv("books.csv", on_bad_lines='skip', parse_dates=['p
 """PLOT ONE, Average, Low, Min book rating, NEEDS POLISH"""
 
 plt.figure()
+title = "Book Rating Statistics"
 
 averageBookRating = (booksPandasFrame["average_rating"].mean())
 highestBookRating = (booksPandasFrame["average_rating"].max())
@@ -32,17 +39,15 @@ values = [averageBookRating, highestBookRating, lowestBookRating]
 
 
 
-plt.title("Book Rating Statistics")
+plt.title(title)
 plt.ylabel('Rating')
 
 plt.bar(labels, values)
 
-savefile = "charts/Book Rating Statistics.png"
-plt.savefig(savefile)
-plt.show()
-plt.close()
+saveChartToFile(title)
 """PLOT TWO, FINISHED"""
 plt.figure()
+title = "Dates and Ratings"
 
 firstPubDate = booksPandasFrame["publication_date"].min()
 lastPubDate = booksPandasFrame["publication_date"].max()
@@ -52,13 +57,11 @@ plt.xticks([], [])
 plt.xlabel("Dates from " + firstPubDate + " to " + lastPubDate)
 plt.scatter(booksPandasFrame["publication_date"], booksPandasFrame["average_rating"])
 
-savefile = "charts/Dates and Ratings.png"
-plt.savefig(savefile)
-plt.show()
-plt.close()
+saveChartToFile(title)
 """PLOT THREE, pulls publication date and rating to show a scatter plot, NEEDS POLISH"""
 
 plt.figure(figsize=(16, 10))
+title = "Top 5 Most Prolific Authors"
 #pulls all authors from panda frames, some entries contain multiple authors though
 authorListWithMultipleAuthors = booksPandasFrame["authors"].tolist()
 
@@ -88,22 +91,21 @@ topFiveAuthors = sortedAuthors[:5]
 authors, counts = zip(*topFiveAuthors)
 
 plt.xticks(rotation=45)
-plt.title("Top 5 Most Prolific Authors")
+plt.title(title)
 plt.xlabel("Authors")
 plt.ylabel("Number of Books")
 
 plt.bar(authors, counts)
 
 
-savefile = "charts/Most Prolific.png"
-plt.savefig(savefile)
-plt.show()
-plt.close()
+saveChartToFile(title)
 
 """PLOT FOUR, IN PROGRESS"""
 #pulls 10 random books. Calculates book length versus score
 plt.figure()
-plt.title("Average Rating - 10 Random Titles")
+title = "Average Rating of 10 Random Titles"
+
+plt.title(title)
 plt.xlabel("Title")
 plt.ylabel("Rating")
 
@@ -113,21 +115,16 @@ plt.xticks(rotation=45)
 
 plt.scatter(sampleBooks['title'], sampleBooks['average_rating'])
 
-savefile = "Random Books.png"
-plt.savefig(savefile)
-plt.show()
-plt.close()
+saveChartToFile(title)
 
 """PLOT FIVE, NEEDS POLISH"""
 #this graph shows the page count vs rating distribution for all books in the list
 plt.figure()
-plt.title("Page Count vs. Rating")
+title = "Page Count vs Rating"
+plt.title(title)
 plt.xlabel("Page Count")
 plt.ylabel("Rating")
 
 plt.scatter(booksPandasFrame['  num_pages'], booksPandasFrame['average_rating'])
 
-savefile = "charts/Page vs Rating.png"
-plt.savefig(savefile)
-plt.show()
-plt.close()
+saveChartToFile(title)
