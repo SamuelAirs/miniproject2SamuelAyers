@@ -105,23 +105,25 @@ def createPlotThree():
     saveChartToFile(title)
 
 """         FUNCTION: PLOT FOUR, IN PROGRESS"""
-#pulls 5 random books. Calculates book length versus score
+#plots the rating of a random book
 def createPlotFour():
-
+    sampleBooks = booksPandasFrame.sample(1)
     plt.figure()
-    title = "Average Rating of 5 Random Titles"
+
+    title = sampleBooks['title'].iloc[0]
+    avgRate = sampleBooks['average_rating'].iloc[0]
+    pubDate = sampleBooks['publication_date'].iloc[0]
+
+    plt.yticks([])
+    plt.xticks([])
 
     plt.title(title)
-    plt.xlabel("Title")
-    plt.ylabel("Rating")
+    plt.ylabel("Published in " + str(pubDate))
+    plt.xlabel("Achieving an average rating of " + str(avgRate))
 
+    plt.scatter(avgRate, pubDate)
 
-    sampleBooks = booksPandasFrame.sample(5)
-    plt.xticks(rotation=45)
-
-    plt.scatter(sampleBooks['title'], sampleBooks['average_rating'])
-
-    saveChartToFile(title)
+    saveChartToFile('Random Book Rating and Year')
 
 """         FUNCTION: PLOT FIVE, NEEDS POLISH"""
 # this chart shows the page count vs rating distribution for all books in the list
