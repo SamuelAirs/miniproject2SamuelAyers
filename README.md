@@ -21,7 +21,7 @@ An in-depth paragraph about your project and overview of use.
 
 ### Installing
 
-* https://www.kaggle.com/datasets/khushipitroda/imdb-top-250-tv-shows
+* https://www.kaggle.com/datasets/jealousleopard/goodreadsbooks/data
 * pip install -r requirements.txt
 
 ### Executing program
