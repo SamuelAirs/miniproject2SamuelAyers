@@ -15,8 +15,9 @@ except FileExistsError:
     pass
 
 #create pandas dataframe called tvShows from csv data
-booksPandasFrame = pd.read_csv("books.csv")
+booksPandasFrame = pd.read_csv("books.csv", on_bad_lines='skip')
 
+print(booksPandasFrame.describe())
 """PLOT ONE, SHITTY"""
 
 #tvShows.head(25)["Rating"].plot()
