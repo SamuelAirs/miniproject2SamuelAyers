@@ -47,8 +47,15 @@ savefile = "charts/Dates and Ratings.png"
 plt.savefig(savefile)
 
 """PLOT THREE, UNSTARTED"""
-#tvShows.head(25)["Rating"].plot.density()
-#plt.show()
+authorListWithMultipleAuthors = booksPandasFrame["authors"].tolist()
+authorListWithSingleAuthors = []
+for i in range(len(authorListWithMultipleAuthors)):
+    authors = authorListWithMultipleAuthors[i]
+    if "/" in authors:
+        print("multiple authors found")
+    print (authors)
+
+
 
 """PLOT FOUR, UNSTARTED"""
 #pulls top five tv shows from pandaframe
